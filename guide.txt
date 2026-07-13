@@ -3,3 +3,9 @@
 cd my-app
 npm run dev ```
 
+App routes are made directly by folde structure, along with api routes as well.
+
+api routes file will contain all the functions (scuh as post get delete etc) and what they should do
+
+in the pages file, it will call the specific function, specifying the type of http request (bydefault get, but can be specified to post or delete)
+MUST be in await and is accessed bt "fetch("/api/[name]")"
