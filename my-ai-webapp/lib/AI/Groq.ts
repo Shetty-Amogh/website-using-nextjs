@@ -1,7 +1,11 @@
+import "server-only";
+
 import Groq from "groq-sdk";
 import { directBehaviour } from "./behaviour";
 
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+let api_key = process.env.GROQ_API_KEY;
+
+const groq = new Groq({ apiKey: api_key });
 
 export const generateReply = async (query: string) => {
   console.log("Response started generating");
@@ -18,9 +22,4 @@ export const generateReply = async (query: string) => {
     ],
     model: "openai/gpt-oss-20b",
   });
-};
-
-export const sendResponse = async (query:string) => {
-  const completion = await generateReply(query);
-  return completion.choices[0]?.message?.content;
 };

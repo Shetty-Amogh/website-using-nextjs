@@ -1,5 +1,7 @@
+//This is used to generate reply from the ai
+
 import { NextResponse } from "next/server";
-import { sendResponse } from "@/lib/Groq";
+import { generateReply } from "@/lib/AI/Groq";
 
 var response = "";
 export async function POST(req: Request) {
@@ -7,8 +9,7 @@ export async function POST(req: Request) {
   const query = JSON.stringify(body);
 
   while (true) {
-    const resp = await sendResponse(query);
-
+    const resp = await generateReply(query);
     response = JSON.stringify(resp);
 
     if (response) {
