@@ -11,8 +11,13 @@ import { sendResponse, generateResponse } from "../AI/actions";
 
 export async function creation_of_new_chat(title: string) {
   await create_chat(title);
-  console.log("chat opened sucessfully");
   if (chatId) {
+    await user_message_append(chatId, title);
+    await generateResponse(title);
+    const aiReply = await sendResponse();
+    if (aiReply) {
+      await ai_message_append(chatId, aiReply);
+    }
     return chatId;
   }
 }

@@ -10,8 +10,6 @@ export async function create_chat(title: string) {
     })
     .select("id")
     .single();
-
-  console.log(chatId + "chat id here");
   if (data) {
     chatId = data.id;
   } else {
@@ -33,10 +31,6 @@ export async function add_message(
     })
     .select()
     .single();
-
-  if (data) {
-    console.log("Message for " + role + " added successfully : " + content);
-  }
 }
 
 export async function chat_list() {
@@ -53,7 +47,7 @@ export async function chat_list() {
 export async function chat_history(chatId: string) {
   const { data, error } = await supabase
     .from("messages")
-    .select("*")
+    .select("role, content")
     .eq("chat_id", chatId)
     .order("created_at", { ascending: true });
 

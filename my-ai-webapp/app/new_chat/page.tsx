@@ -18,7 +18,12 @@ export default function Chat() {
     );
 
     const chatId = await response.json();
-    router.push(`${process.env.NEXT_PUBLIC_BASE_URL}/chat/${chatId}`);
+    if (chatId == undefined) {
+      router.push(`${process.env.NEXT_PUBLIC_BASE_URL}/error`);
+    } else {
+      router.push(`${process.env.NEXT_PUBLIC_BASE_URL}/chat/${chatId.chatId}`);
+    }
+
     setSearch("");
   };
 
