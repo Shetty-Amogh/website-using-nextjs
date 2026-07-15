@@ -18,7 +18,8 @@ export default function Chat() {
     );
 
     const chatId = await response.json();
-    if (chatId == undefined) {
+    console.log("chat id is : " + chatId.chatId + " ");
+    if (chatId.chatId == undefined) {
       router.push(`${process.env.NEXT_PUBLIC_BASE_URL}/error`);
     } else {
       router.push(`${process.env.NEXT_PUBLIC_BASE_URL}/chat/${chatId.chatId}`);
